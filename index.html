@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AOTUS — Analítica territorial para decisiones reales</title>
+  <meta name="description" content="AOTUS convierte los datos de tu municipio en información clara para tomar mejores decisiones. Analítica territorial para municipios pequeños de Colombia. Prototipo demostrativo.">
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%231d4ed8'/%3E%3Ccircle cx='16' cy='16' r='7' fill='white'/%3E%3C/svg%3E">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ============================================================ HEADER -->
+  <header class="site-header">
+    <div class="container header-inner">
+      <a href="#inicio" class="brand">AOTUS</a>
+      <nav id="nav-menu" class="nav-menu" aria-label="Navegación principal">
+        <a class="nav-link" href="#inicio">Inicio</a>
+        <a class="nav-link" href="#diagnostico">Diagnóstico</a>
+        <a class="nav-link js-tab-link" href="#diagnostico" data-tab="seguridad">Seguridad</a>
+        <a class="nav-link js-tab-link" href="#diagnostico" data-tab="contratacion">Contratación</a>
+        <a class="nav-link js-tab-link" href="#diagnostico" data-tab="comparacion">Comparación</a>
+        <a class="nav-link" href="#servicios">Servicios</a>
+        <a class="btn btn-primary" href="#contacto">Solicitar diagnóstico gratuito</a>
+      </nav>
+      <button id="nav-toggle" class="nav-toggle" aria-label="Abrir menú" aria-expanded="false">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+          <path d="M4 7h16M4 12h16M4 17h16"></path>
+        </svg>
+      </button>
+    </div>
+  </header>
+
+  <main>
+
+    <!-- ============================================================ HERO -->
+    <section id="inicio" class="hero">
+      <div class="container">
+        <span class="eyebrow reveal">Consulta boutique de analítica territorial</span>
+        <h1 class="reveal">AOTUS</h1>
+        <p class="tagline reveal">Analítica territorial para decisiones reales.</p>
+        <p class="lead reveal">“Convertimos los datos de tu municipio en información clara para tomar mejores decisiones.”</p>
+        <div class="hero-actions reveal">
+          <a class="btn btn-primary btn-lg" href="#diagnostico">Ver diagnóstico</a>
+          <a class="btn btn-outline btn-lg" href="#contacto">Solicitar diagnóstico gratuito</a>
+        </div>
+        <p class="hero-note reveal">Prototipo demostrativo. Los datos utilizados son ficticios y únicamente sirven para mostrar cómo funcionaría AOTUS.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ DASHBOARD -->
+    <section id="diagnostico" class="section">
+      <div class="container">
+        <div class="dashboard-head">
+          <h2>Diagnóstico territorial — El Rosal, Cundinamarca</h2>
+          <span class="notice-badge js-notice"></span>
+        </div>
+
+        <div class="municipio-bar">
+          <div>
+            <label for="municipio">Municipio</label>
+            <select id="municipio"></select>
+          </div>
+          <span class="municipio-note">En este prototipo solo El Rosal cuenta con datos de práctica.</span>
+        </div>
+
+        <div class="tabs" role="tablist" aria-label="Pestañas del diagnóstico">
+          <button class="tab active" data-tab="resumen" role="tab" aria-selected="true">Resumen fiscal</button>
+          <button class="tab" data-tab="seguridad" role="tab" aria-selected="false">Seguridad ciudadana</button>
+          <button class="tab" data-tab="contratacion" role="tab" aria-selected="false">Contratación pública</button>
+          <button class="tab" data-tab="comparacion" role="tab" aria-selected="false">Comparación</button>
+        </div>
+
+        <!-- ===== Pestaña: Resumen fiscal ===== -->
+        <div class="panel active" data-panel="resumen" role="tabpanel">
+          <div id="kpi-grid" class="kpi-grid"></div>
+
+          <div class="chart-grid-2">
+            <div class="chart-card">
+              <h3 id="dependencia-title">Evolución de la dependencia fiscal</h3>
+              <p class="chart-text" id="dependencia-text"></p>
+              <div class="chart-holder" id="chart-dependencia" role="img" aria-label="Gráfico de evolución de la dependencia fiscal"></div>
+              <p class="chart-note" id="dependencia-note"></p>
+            </div>
+
+            <div class="chart-card">
+              <h3 id="modalidades-title">Distribución de modalidades de contratación</h3>
+              <div class="chart-holder" id="chart-modalidades" role="img" aria-label="Gráfico de modalidades de contratación"></div>
+              <p class="chart-note" id="modalidades-note"></p>
+              <div class="alert-box">
+                <h4 id="alert-title">Alerta de revisión</h4>
+                <p id="alert-text"></p>
+                <small>Señal de revisión, no de irregularidad. Los valores son ficticios y no implican hallazgos reales sobre ningún contrato.</small>
+              </div>
+            </div>
+          </div>
+
+          <div class="map-card">
+            <h3>Ubicación en el territorio</h3>
+            <p class="chart-text">El Rosal se ubica en Cundinamarca, en el corredor de municipios cercanos a la capital del país. Representación ilustrativa dentro del territorio nacional.</p>
+            <div class="map-inner" id="map-svg"></div>
+            <p class="chart-note">Mapa ilustrativo del territorio colombiano. No es una fuente cartográfica oficial.</p>
+          </div>
+
+          <h3 id="meaning-title" style="font-size:20px;margin:36px 0 18px">¿Qué significa esto?</h3>
+          <div id="meaning-blocks" class="meaning-grid"></div>
+          <p class="table-note" id="sources-note" style="margin-top:22px"></p>
+        </div>
+
+        <!-- ===== Pestaña: Seguridad ciudadana ===== -->
+        <div class="panel" data-panel="seguridad" role="tabpanel">
+          <div class="panel-title">
+            <span id="seguridad-title">Seguridad ciudadana</span>
+            <span class="notice-badge js-notice"></span>
+          </div>
+
+          <div id="seguridad-kpis" class="kpi-grid"></div>
+
+          <div class="chart-card" style="margin-bottom:28px">
+            <h3>Evolución mensual de los indicadores</h3>
+            <div class="chart-holder" id="chart-seguridad-mensual" role="img" aria-label="Gráfico de evolución mensual de seguridad ciudadana"></div>
+            <p class="chart-note" id="seguridad-chart-note"></p>
+          </div>
+
+          <div class="chart-card">
+            <h4 id="seguridad-rec-title" style="margin-bottom:6px">Recomendación</h4>
+            <p class="chart-text" id="seguridad-rec-text" style="margin-bottom:16px"></p>
+            <a class="btn btn-primary" href="#contacto">Ver diagnóstico completo</a>
+          </div>
+        </div>
+
+        <!-- ===== Pestaña: Contratación pública ===== -->
+        <div class="panel" data-panel="contratacion" role="tabpanel">
+          <div class="panel-title">
+            <span id="contratacion-title">Contratación pública</span>
+            <span class="notice-badge js-notice"></span>
+          </div>
+
+          <div id="contratacion-kpis" class="kpi-grid"></div>
+
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>Contrato</th>
+                  <th>Modalidad</th>
+                  <th class="num">Valor</th>
+                  <th class="num">Duración</th>
+                  <th>Señal</th>
+                </tr>
+              </thead>
+              <tbody id="contratacion-table-body"></tbody>
+            </table>
+          </div>
+          <p class="table-note" id="contratacion-fake-note"></p>
+        </div>
+
+        <!-- ===== Pestaña: Comparación ===== -->
+        <div class="panel" data-panel="comparacion" role="tabpanel">
+          <div class="panel-title">
+            <span id="comparacion-title">¿Cómo está el municipio frente a otros similares?</span>
+            <span class="notice-badge js-notice"></span>
+          </div>
+
+          <div class="table-wrap">
+            <table>
+              <thead id="comparacion-header">
+                <tr><th>Indicador</th><th>El Rosal</th><th>Promedio municipios similares</th></tr>
+              </thead>
+              <tbody id="comparacion-rows"></tbody>
+            </table>
+          </div>
+          <p class="table-note" id="comparacion-note"></p>
+
+          <div class="comparison-callout">
+            “Compararse con municipios similares permite entender mejor si un indicador es realmente preocupante o simplemente responde a las características del territorio.”
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <!-- ============================================================ PROPUESTA DE VALOR -->
+    <section id="valor" class="section section-soft">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Propuesta de valor</span>
+          <h2>AOTUS no solo muestra datos. Los traduce.</h2>
+        </div>
+
+        <div class="valor-steps reveal">
+          <div class="valor-step">
+            <span class="step-idx">PASO 01</span>
+            <h4>Datos oficiales</h4>
+            <p>Las cifras públicas ya disponibles del territorio.</p>
+          </div>
+          <span class="red-link">→</span>
+          <div class="valor-step">
+            <span class="step-idx">PASO 02</span>
+            <h4>Análisis</h4>
+            <p>Ordenamos, limpiamos y damos contexto a la información.</p>
+          </div>
+          <span class="red-link">→</span>
+          <div class="valor-step">
+            <span class="step-idx">PASO 03</span>
+            <h4>Decisiones</h4>
+            <p>Información clara para quienes toman decisiones.</p>
+          </div>
+        </div>
+
+        <p class="valor-explain reveal">El municipio ya tiene información. <strong>AOTUS ayuda a organizarla, analizarla</strong> y convertirla en <strong>información útil</strong> para quienes toman decisiones.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ SERVICIOS -->
+    <section id="servicios" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Modelo de servicio</span>
+          <h2>Servicios pensados para la capacidad del municipio</h2>
+        </div>
+
+        <div class="plans-grid reveal">
+          <article class="plan">
+            <h3>Diagnóstico</h3>
+            <ul>
+              <li>Diagnóstico inicial</li>
+              <li>Dashboard básico</li>
+              <li>Reunión de explicación</li>
+            </ul>
+            <p class="plan-price">Precio según tamaño y capacidad del municipio.</p>
+            <a class="btn btn-outline" href="#contacto">Solicitar información</a>
+          </article>
+
+          <article class="plan featured">
+            <span class="plan-tag">Recomendado</span>
+            <h3>Acompañamiento</h3>
+            <ul>
+              <li>Dashboard actualizado</li>
+              <li>Alertas</li>
+              <li>Comparación con municipios similares</li>
+              <li>Reuniones de seguimiento</li>
+            </ul>
+            <p class="plan-price">Precio según tamaño y capacidad del municipio.</p>
+            <a class="btn btn-primary" href="#contacto">Solicitar información</a>
+          </article>
+
+          <article class="plan">
+            <h3>Consultoría</h3>
+            <ul>
+              <li>Análisis específico</li>
+              <li>Recomendaciones</li>
+              <li>Capacitación</li>
+              <li>Acompañamiento presencial o remoto</li>
+            </ul>
+            <p class="plan-price">Precio según tamaño y capacidad del municipio.</p>
+            <a class="btn btn-outline" href="#contacto">Solicitar información</a>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ CONECTIVIDAD -->
+    <section id="conectividad" class="section section-soft">
+      <div class="container">
+        <div class="conectividad reveal">
+          <div>
+            <span class="eyebrow">Conectividad</span>
+            <h2>Digital cuando se puede.<br>Presencial cuando se necesita.</h2>
+            <p>AOTUS funciona principalmente de manera digital, pero también contempla acompañamiento presencial para municipios con dificultades de conectividad.</p>
+          </div>
+          <div style="display:grid;gap:14px">
+            <div class="conn-card">
+              <span class="big">Digital</span>
+              <span class="small">Dashboards, informes y reuniones por videollamada para la mayoría del proceso.</span>
+            </div>
+            <div class="conn-card">
+              <span class="big">Presencial</span>
+              <span class="small">Visitas de acompañamiento cuando el municipio lo necesite, según sus condiciones.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ RED TERRITORIAL -->
+    <section id="red" class="section red-section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Universidades</span>
+          <h2>Red territorial AOTUS</h2>
+          <p>Queremos conectar universidades, municipios y talento local para resolver problemas reales de los territorios.</p>
+        </div>
+
+        <div class="red-diagram reveal">
+          <span class="red-node">Universidades</span>
+          <span class="red-link">↔</span>
+          <span class="red-node"><span class="blue-node">AOTUS</span></span>
+          <span class="red-link">↔</span>
+          <span class="red-node">Municipios</span>
+        </div>
+
+        <p class="red-desc reveal">Las universidades aportan conocimiento y talento; los municipios plantean necesidades reales; AOTUS conecta ambas partes.</p>
+      </div>
+    </section>
+
+    <!-- ============================================================ CONTACTO / FORMULARIO -->
+    <section id="contacto" class="section">
+      <div class="container">
+        <div class="section-head reveal">
+          <span class="eyebrow">Diagnóstico gratuito</span>
+          <h2>¿Quieres conocer la situación de tu municipio?</h2>
+          <p>Solicita un diagnóstico inicial gratuito y descubre qué pueden decir los datos de tu territorio.</p>
+        </div>
+
+        <div class="form-card reveal">
+          <form id="diagnostico-form" novalidate>
+            <div class="form-grid">
+              <div class="field">
+                <label for="f-nombre">Nombre</label>
+                <input id="f-nombre" name="nombre" type="text" required placeholder="Nombre y apellido">
+              </div>
+              <div class="field">
+                <label for="f-cargo">Cargo</label>
+                <input id="f-cargo" name="cargo" type="text" required placeholder="Alcalde, secretario, coordinador…">
+              </div>
+              <div class="field">
+                <label for="f-municipio">Municipio</label>
+                <input id="f-municipio" name="municipio" type="text" required placeholder="Nombre del municipio">
+              </div>
+              <div class="field">
+                <label for="f-departamento">Departamento</label>
+                <input id="f-departamento" name="departamento" type="text" required placeholder="Departamento">
+              </div>
+              <div class="field full">
+                <label for="f-email">Correo electrónico</label>
+                <input id="f-email" name="email" type="email" required placeholder="correo@municipio.gov.co">
+              </div>
+              <div class="field full">
+                <label>¿Qué tema quieres analizar?</label>
+                <div class="radio-group">
+                  <label class="radio-opt"><input type="radio" name="tema" value="Seguridad" required> Seguridad</label>
+                  <label class="radio-opt"><input type="radio" name="tema" value="Finanzas municipales"> Finanzas municipales</label>
+                  <label class="radio-opt"><input type="radio" name="tema" value="Contratación pública"> Contratación pública</label>
+                  <label class="radio-opt"><input type="radio" name="tema" value="Otro"> Otro</label>
+                </div>
+              </div>
+            </div>
+            <div class="form-actions">
+              <button class="btn btn-primary btn-lg" type="submit">Solicitar diagnóstico gratuito</button>
+            </div>
+            <p class="table-note" style="text-align:center">Prototipo demostrativo: este formulario no envía información a ningún servidor.</p>
+          </form>
+
+          <div id="form-success" class="form-success hidden">
+            <div class="ok-icon">✓</div>
+            <h3>¡Solicitud registrada!</h3>
+            <p>En este prototipo el formulario es demostrativo. Con la herramienta real, el municipio recibiría una respuesta por parte del equipo AOTUS.</p>
+            <button id="form-again" class="btn btn-outline" type="button">Enviar otra solicitud</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- ============================================================ CIERRE -->
+    <section id="cierre" class="cta-section">
+      <div class="container">
+        <h2 class="reveal">“El dato de tu municipio ya existe.<br>AOTUS ayuda a convertirlo en decisiones.”</h2>
+        <p class="reveal">Analítica territorial cercana, sencilla y pensada para municipios pequeños de Colombia.</p>
+        <div class="cta-actions reveal">
+          <a class="btn btn-primary btn-lg" href="#contacto">Solicitar diagnóstico gratuito</a>
+          <a class="btn btn-ghost btn-lg" href="#diagnostico">Ver ejemplo de El Rosal</a>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ============================================================ FOOTER -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div>
+          <a href="#inicio" class="brand">AOTUS</a>
+          <p class="footer-note">Analítica territorial para decisiones reales. Consultoría boutique enfocada en municipios pequeños de Colombia.</p>
+        </div>
+        <div class="footer-cols">
+          <div>
+            <h5>Explorar</h5>
+            <a href="#diagnostico">Diagnóstico</a>
+            <a href="#valor">Propuesta de valor</a>
+            <a href="#servicios">Servicios</a>
+            <a href="#red">Red territorial</a>
+          </div>
+          <div>
+            <h5>Contacto</h5>
+            <a href="#contacto">Solicitar diagnóstico gratuito</a>
+            <a href="#contacto">Diagnóstico inicial</a>
+          </div>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        <span>© 2026 AOTUS — Prototipo demostrativo.</span>
+        <span>Datos ficticios. Fuentes futuras: DANE · SECOP · CHIP.</span>
+      </div>
+    </div>
+  </footer>
+
+  <script src="js/data.js"></script>
+  <script src="js/charts.js"></script>
+  <script src="js/map.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
