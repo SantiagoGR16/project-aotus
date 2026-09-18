@@ -16,7 +16,10 @@
   <!-- ============================================================ HEADER -->
   <header class="site-header">
     <div class="container header-inner">
-      <a href="#inicio" class="brand">AOTUS</a>
+      <a href="#inicio" class="brand">
+        <img class="brand-logo" src="img/logo.png" alt="Logo de AOTUS" onerror="this.style.display='none'">
+        <span class="brand-text">AOTUS</span>
+      </a>
       <nav id="nav-menu" class="nav-menu" aria-label="Navegación principal">
         <a class="nav-link" href="#inicio">Inicio</a>
         <a class="nav-link" href="#diagnostico">Diagnóstico</a>
@@ -102,6 +105,11 @@
             <h3>Ubicación en el territorio</h3>
             <p class="chart-text">El Rosal se ubica en Cundinamarca, en el corredor de municipios cercanos a la capital del país. Representación ilustrativa dentro del territorio nacional.</p>
             <div class="map-inner" id="map-svg"></div>
+            <div class="map-controls" aria-label="Controles del mapa">
+              <button type="button" class="map-btn js-map-in" aria-label="Acercar al municipio">+</button>
+              <button type="button" class="map-btn js-map-out" aria-label="Alejar">−</button>
+              <button type="button" class="map-btn js-map-reset" aria-label="Ver Colombia completo">⤢</button>
+            </div>
             <p class="chart-note">Mapa ilustrativo del territorio colombiano. No es una fuente cartográfica oficial.</p>
           </div>
 
@@ -384,7 +392,10 @@
     <div class="container">
       <div class="footer-inner">
         <div>
-          <a href="#inicio" class="brand">AOTUS</a>
+      <a href="#inicio" class="brand">
+        <img class="brand-logo" id="brand-logo" src="img/logo.png" alt="Logo de AOTUS" onerror="this.classList.add('broken')">
+        <span class="brand-name">AOTUS</span>
+      </a>
           <p class="footer-note">Analítica territorial para decisiones reales. Consultoría boutique enfocada en municipios pequeños de Colombia.</p>
         </div>
         <div class="footer-cols">

@@ -317,6 +317,45 @@
     txt.setAttribute("text-anchor", "middle");
     txt.setAttribute("class", "map-label");
     root.appendChild(txt);
+
+    initMapZoom(root, M);
+  }
+
+  /* ------------------------------------------------------------------
+     Zoom al municipio: el mapa se abre centrado en El Rosal
+     ------------------------------------------------------------------ */
+  function initMapZoom(root, M) {
+    if (!root) return;
+
+    var Z = { scale: 3.6, min: 1, max: 9 };
+    var cx = M.x, cy = M.y;
+
+    function apply(w) {
+      if (w < Z.min) w = Z.min;
+      if (w > Z.max) w = Z.max;
+      root.style.transform = "scale(" + w + ")";
+      root.style.transformOrigin = cx + "px " + cy + "px";
+      root.style.transformBox = "view-box";
+      root.setAttribute("data-zoom", w);
+    }
+
+    function step(d) {
+      var cur = parseFloat(root.getAttribute("data-zoom")) || Z.scale;
+      apply(cur + d);
+    }
+
+    // Apertura centrada en el municipio (animada)
+    apply(Z.scale);
+
+    // Conectar controles (+ / − / reiniciar)
+    var bikes = document.querySelectorAll(".js-map-in, .js-map-out, .js-map-reset");
+    Array.prototype.forEach.call(bikes, function (btn) {
+      btn.addEventListener("click", function () {
+        if (btn.classList.contains("js-map-in")) step(1.6);
+        else if (btn.classList.contains("js-map-out")) step(-1.6);
+        else apply(1);
+      });
+    });
   }
 
   /* ------------------------------------------------------------------
